@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const User = require("../models/userModel");
 
+//*** add users****//
 router.post("/register", async (req, res) => {
   try {
     let { email, password, passwordCheck, displayName } = req.body;
@@ -44,6 +45,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//*** user login****//
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -74,6 +76,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//*** delete users****//
 router.delete("/delete", auth, async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.user);
@@ -83,6 +86,7 @@ router.delete("/delete", auth, async (req, res) => {
   }
 });
 
+//*** validate token****//
 router.post("/tokenIsValid", async (req, res) => {
   try {
     const token = req.header("x-auth-token");
@@ -100,6 +104,7 @@ router.post("/tokenIsValid", async (req, res) => {
   }
 });
 
+//*** get users****//
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({

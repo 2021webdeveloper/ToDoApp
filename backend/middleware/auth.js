@@ -1,6 +1,6 @@
   
 const jwt = require("jsonwebtoken");
-
+//*** get auth schema****//
 const auth = (req, res, next) => {
   try {
     const token = req.header("x-auth-token");
